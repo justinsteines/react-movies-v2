@@ -6,6 +6,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
     'prettier',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
@@ -18,5 +19,6 @@ module.exports = {
       { allowConstantExport: true },
     ],
     'react/prop-types': ['off'],
+    'react-refresh/only-export-components': ['off'],
   },
 }
