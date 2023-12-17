@@ -5,17 +5,12 @@ import MainNavigation from '../components/MainNavigation'
 function ErrorPage() {
   const error = useRouteError()
 
-  let message = 'Something went wrong!'
-
-  if (error.status === 404) {
-    message = 'Page not found!'
-  }
   return (
     <>
       <MainNavigation />
       <main>
-        <h1>{error.status}</h1>
-        <p>{message}</p>
+        <h1>{error?.status || 500}</h1>
+        <p>{error.data?.message || 'An error has occurred!'}</p>
       </main>
     </>
   )
