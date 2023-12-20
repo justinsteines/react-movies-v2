@@ -1,5 +1,4 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
-import { Link } from 'react-router-dom'
 
 import {
   queryClient,
@@ -9,6 +8,7 @@ import {
   showsPopularQuery,
   showsTopRatedQuery,
 } from '../utils/http'
+import Carousel from '../components/Carousel'
 
 function ShowsPage() {
   const { data: resTrending } = useInfiniteQuery(showsTrendingQuery())
@@ -23,52 +23,44 @@ function ShowsPage() {
   const popular = resPopular.pages.flatMap((p) => p.results)
   const topRated = resTopRated.pages.flatMap((p) => p.results)
 
+  const carousels = [
+    {
+      title: 'Trending Shows',
+      items: trending,
+    },
+    {
+      title: 'Shows Airing Today',
+      items: airingToday,
+    },
+    {
+      title: 'Shows Airing In The Next Week',
+      items: airingWeek,
+    },
+    {
+      title: 'Popular Shows',
+      items: popular,
+    },
+    {
+      title: 'Top Rated Shows',
+      items: topRated,
+    },
+  ]
+
   return (
     <>
-      <h2>Trending Shows</h2>
-      <ul>
-        {trending.map((show) => (
-          <li key={show.id}>
-            <Link to={`${show.id}`}>{show.name}</Link>
-          </li>
-        ))}
-      </ul>
-      <br />
-      <h2>Shows Airing Today</h2>
-      <ul>
-        {airingToday.map((show) => (
-          <li key={show.id}>
-            <Link to={`${show.id}`}>{show.name}</Link>
-          </li>
-        ))}
-      </ul>
-      <br />
-      <h2>Shows Airing In The Next Week</h2>
-      <ul>
-        {airingWeek.map((show) => (
-          <li key={show.id}>
-            <Link to={`${show.id}`}>{show.name}</Link>
-          </li>
-        ))}
-      </ul>
-      <br />
-      <h2>Popular Shows</h2>
-      <ul>
-        {popular.map((show) => (
-          <li key={show.id}>
-            <Link to={`${show.id}`}>{show.name}</Link>
-          </li>
-        ))}
-      </ul>
-      <br />
-      <h2>Top Rated Shows</h2>
-      <ul>
-        {topRated.map((show) => (
-          <li key={show.id}>
-            <Link to={`${show.id}`}>{show.name}</Link>
-          </li>
-        ))}
-      </ul>
+      {carousels.map((carousel) => (
+        <Carousel
+          key={carousel.title}
+          title={carousel.title}
+          items={carousel.items.map((show) => ({
+            id: show.id,
+            link: `/shows/${show.id}`,
+            title: show.name,
+            posterPath: show.poster_path,
+            rating: show.vote_average,
+          }))}
+        />
+      ))}
     </>
   )
 }

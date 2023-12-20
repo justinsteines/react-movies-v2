@@ -1,5 +1,4 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
-import { Link } from 'react-router-dom'
 
 import {
   queryClient,
@@ -9,6 +8,7 @@ import {
   moviesPopularQuery,
   moviesTopRatedQuery,
 } from '../utils/http'
+import Carousel from '../components/Carousel'
 
 function MoviesPage() {
   const { data: resTrending } = useInfiniteQuery(moviesTrendingQuery())
@@ -23,52 +23,44 @@ function MoviesPage() {
   const popular = resPopular.pages.flatMap((p) => p.results)
   const topRated = resTopRated.pages.flatMap((p) => p.results)
 
+  const carousels = [
+    {
+      title: 'Trending Movies',
+      items: trending,
+    },
+    {
+      title: 'Now Playing Movies',
+      items: nowPlaying,
+    },
+    {
+      title: 'Upcoming Movies',
+      items: upcoming,
+    },
+    {
+      title: 'Popular Movies',
+      items: popular,
+    },
+    {
+      title: 'Top Rated Movies',
+      items: topRated,
+    },
+  ]
+
   return (
     <>
-      <h2>Trending Movies</h2>
-      <ul>
-        {trending.map((movie) => (
-          <li key={movie.id}>
-            <Link to={`${movie.id}`}>{movie.title}</Link>
-          </li>
-        ))}
-      </ul>
-      <br />
-      <h2>Movies Now Playing</h2>
-      <ul>
-        {nowPlaying.map((movie) => (
-          <li key={movie.id}>
-            <Link to={`${movie.id}`}>{movie.title}</Link>
-          </li>
-        ))}
-      </ul>
-      <br />
-      <h2>Upcoming Movies</h2>
-      <ul>
-        {upcoming.map((movie) => (
-          <li key={movie.id}>
-            <Link to={`${movie.id}`}>{movie.title}</Link>
-          </li>
-        ))}
-      </ul>
-      <br />
-      <h2>Popular Movies</h2>
-      <ul>
-        {popular.map((movie) => (
-          <li key={movie.id}>
-            <Link to={`${movie.id}`}>{movie.title}</Link>
-          </li>
-        ))}
-      </ul>
-      <br />
-      <h2>Top Rated Movies</h2>
-      <ul>
-        {topRated.map((movie) => (
-          <li key={movie.id}>
-            <Link to={`${movie.id}`}>{movie.title}</Link>
-          </li>
-        ))}
-      </ul>
+      {carousels.map((carousel) => (
+        <Carousel
+          key={carousel.title}
+          title={carousel.title}
+          items={carousel.items.map((movie) => ({
+            id: movie.id,
+            link: `/movies/${movie.id}`,
+            title: movie.title,
+            posterPath: movie.poster_path,
+            rating: movie.vote_average,
+          }))}
+        />
+      ))}
     </>
   )
 }

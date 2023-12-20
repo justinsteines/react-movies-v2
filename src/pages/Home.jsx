@@ -1,11 +1,11 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
-import { Link } from 'react-router-dom'
 
 import {
   queryClient,
   moviesTrendingQuery,
   showsTrendingQuery,
 } from '../utils/http'
+import Carousel from '../components/Carousel'
 
 function HomePage() {
   const { data: resMovies } = useInfiniteQuery(moviesTrendingQuery())
@@ -16,23 +16,26 @@ function HomePage() {
 
   return (
     <>
-      <h2>Trending Movies</h2>
-      <ul>
-        {movies.map((movie) => (
-          <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
-          </li>
-        ))}
-      </ul>
-      <br />
-      <h2>Trending Shows</h2>
-      <ul>
-        {shows.map((show) => (
-          <li key={show.id}>
-            <Link to={`/shows/${show.id}`}>{show.name}</Link>
-          </li>
-        ))}
-      </ul>
+      <Carousel
+        title="Trending Movies"
+        items={movies.map((movie) => ({
+          id: movie.id,
+          link: `/movies/${movie.id}`,
+          title: movie.title,
+          posterPath: movie.poster_path,
+          rating: movie.vote_average,
+        }))}
+      />
+      <Carousel
+        title="Trending Shows"
+        items={shows.map((show) => ({
+          id: show.id,
+          link: `/shows/${show.id}`,
+          title: show.name,
+          posterPath: show.poster_path,
+          rating: show.vote_average,
+        }))}
+      />
     </>
   )
 }
