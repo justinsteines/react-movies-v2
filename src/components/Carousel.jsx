@@ -53,7 +53,7 @@ function Carousel({ title, items }) {
         </AnimatePresence>
         <div
           ref={itemsRef}
-          className="box-content flex snap-x gap-2 overflow-x-auto scroll-smooth px-2 md:px-12"
+          className="box-content flex snap-x gap-2 overflow-x-auto overscroll-x-none scroll-smooth px-2 md:px-12"
           onScroll={handleScroll}
         >
           {items.map((item) => (
@@ -63,8 +63,8 @@ function Carousel({ title, items }) {
               className="flex-none basis-[calc((100%-(2*0.5rem))/3)] snap-start scroll-ml-2 overflow-hidden md:basis-[calc((100%-(3*0.5rem))/4)] md:scroll-ml-12 lg:basis-[calc((100%-(4*0.5rem))/5)] xl:basis-[calc((100%-(5*0.5rem))/6)] 2xl:basis-[calc((100%-(6*0.5rem))/7)]"
             >
               <LazyImage
-                src={`https://image.tmdb.org/t/p/w185${item.posterPath}`}
-                srcSet={`
+                data-src={`https://image.tmdb.org/t/p/w185${item.posterPath}`}
+                data-srcset={`
                   https://image.tmdb.org/t/p/w92${item.posterPath} 92w,
                   https://image.tmdb.org/t/p/w154${item.posterPath} 154w,
                   https://image.tmdb.org/t/p/w185${item.posterPath} 185w,
@@ -75,11 +75,11 @@ function Carousel({ title, items }) {
                 `}
                 sizes={`
                   (max-width: 639px) 203px,
-                  (max-width: 767px) 245px,
-                  (max-width: 1023px) 222px,
-                  (max-width: 1279px) 228px,
-                  (max-width: 1535px) 231px,
-                  200px
+                  (max-width: 767px) 246px,
+                  (max-width: 1023px) 224px,
+                  (max-width: 1279px) 211px,
+                  (max-width: 1535px) 217px,
+                  185px
                 `}
                 alt={item.title}
                 className="aspect-[6/9] rounded-lg object-cover"
