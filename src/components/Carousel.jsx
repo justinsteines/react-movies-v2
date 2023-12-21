@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
+import classes from './Carousel.module.css'
 import LazyImage from './LazyImage'
 import StarRating from './StarRating'
 
@@ -53,7 +54,7 @@ function Carousel({ title, items }) {
         </AnimatePresence>
         <div
           ref={itemsRef}
-          className="box-content flex snap-x gap-2 overflow-x-auto overscroll-x-none scroll-smooth px-2 md:px-12"
+          className={`${classes.items} box-content flex snap-x gap-2 overflow-x-auto overscroll-x-none scroll-smooth px-2 md:px-12`}
           onScroll={handleScroll}
         >
           {items.map((item) => (
