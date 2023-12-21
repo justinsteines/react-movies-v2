@@ -1,24 +1,26 @@
 import { NavLink } from 'react-router-dom'
+import { Icon } from '@iconify/react'
 
 function MainNavigation() {
   const links = [
-    { path: '/', label: 'Home' },
-    { path: '/movies', label: 'Movies' },
-    { path: '/shows', label: 'Shows' },
+    { path: '/', iconName: 'material-symbols:home-rounded' },
+    { path: '/movies', iconName: 'material-symbols:movie' },
+    { path: '/shows', iconName: 'material-symbols:tv-outline-rounded' },
   ]
 
   return (
-    <nav>
-      <ul className="flex gap-4">
+    <nav className="border-t-2 border-slate-50/20 lg:order-first lg:border-r-2 lg:border-t-0">
+      <ul className="flex h-20 items-center justify-center gap-8 lg:my-8 lg:w-[6.5rem] lg:flex-col lg:items-center lg:justify-start lg:h-screen-safe">
         {links.map((link) => (
-          <li key={link.path}>
-            <NavLink
-              to={link.path}
-              className={({ isActive }) => (isActive ? 'underline' : undefined)}
-            >
-              {link.label}
-            </NavLink>
-          </li>
+          <NavLink
+            to={link.path}
+            key={link.path}
+            className={({ isActive }) => (isActive ? 'underline' : undefined)}
+          >
+            <li className="p-4">
+              <Icon icon={link.iconName} className="text-4xl text-sky-400" />
+            </li>
+          </NavLink>
         ))}
       </ul>
     </nav>

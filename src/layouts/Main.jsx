@@ -4,11 +4,11 @@ import MainNavigation from '../components/MainNavigation'
 
 function MainLayout() {
   return (
-    <div className="2xl:container 2xl:mx-auto">
-      <MainNavigation />
-      <main>
+    <div className="grid grid-rows-[1fr_auto] h-screen-safe 2xl:container lg:grid-cols-[auto_1fr] lg:grid-rows-1 2xl:mx-auto">
+      <main className="overflow-auto">
         <Outlet />
       </main>
+      <MainNavigation />
     </div>
   )
 }

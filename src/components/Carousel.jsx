@@ -39,7 +39,7 @@ function Carousel({ title, items }) {
 
   return (
     <div className="my-14">
-      <h2 className="mb-4 px-2 text-2xl font-bold md:px-14">{title}</h2>
+      <h2 className="mb-4 px-2 text-2xl font-bold md:px-12">{title}</h2>
       <div className="relative flex">
         <AnimatePresence>
           {showLeftButton && (
@@ -53,14 +53,14 @@ function Carousel({ title, items }) {
         </AnimatePresence>
         <div
           ref={itemsRef}
-          className="box-content flex snap-x gap-2 overflow-x-auto scroll-smooth px-2 md:px-14"
+          className="box-content flex snap-x gap-2 overflow-x-auto scroll-smooth px-2 md:px-12"
           onScroll={handleScroll}
         >
           {items.map((item) => (
             <Link
               to={item.link}
               key={item.id}
-              className="flex-none basis-[calc((100%-(2*0.5rem))/3)] snap-start scroll-ml-2 overflow-hidden md:basis-[calc((100%-(3*0.5rem))/4)] md:scroll-ml-14 lg:basis-[calc((100%-(4*0.5rem))/5)] xl:basis-[calc((100%-(5*0.5rem))/6)] 2xl:basis-[calc((100%-(6*0.5rem))/7)]"
+              className="flex-none basis-[calc((100%-(2*0.5rem))/3)] snap-start scroll-ml-2 overflow-hidden md:basis-[calc((100%-(3*0.5rem))/4)] md:scroll-ml-12 lg:basis-[calc((100%-(4*0.5rem))/5)] xl:basis-[calc((100%-(5*0.5rem))/6)] 2xl:basis-[calc((100%-(6*0.5rem))/7)]"
             >
               <LazyImage
                 src={`https://image.tmdb.org/t/p/w185${item.posterPath}`}
@@ -110,7 +110,7 @@ function CarouselButton({ className, children, ...props }) {
   return (
     <motion.button
       type="button"
-      className={`absolute bottom-14 top-0 hidden w-8 flex-none items-center justify-center border-2 border-slate-50/20 bg-slate-900/90 text-5xl text-slate-300 md:flex md:w-12 ${className}`}
+      className={`absolute bottom-14 top-0 z-10 hidden w-8 flex-none items-center justify-center border-2 border-slate-50/20 bg-slate-900/90 text-5xl text-slate-300 md:flex md:w-10 ${className}`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
