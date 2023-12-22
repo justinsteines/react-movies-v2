@@ -9,6 +9,7 @@ import {
   showsTopRatedQuery,
 } from '../utils/http'
 import Carousel from '../components/Carousel'
+import Hero from '../components/Hero'
 
 function ShowsPage() {
   const { data: resTrending } = useInfiniteQuery(showsTrendingQuery())
@@ -22,6 +23,8 @@ function ShowsPage() {
   const airingWeek = resAiringWeek.pages.flatMap((p) => p.results)
   const popular = resPopular.pages.flatMap((p) => p.results)
   const topRated = resTopRated.pages.flatMap((p) => p.results)
+
+  let feature = trending[Math.floor(Math.random() * 10)]
 
   const carousels = [
     {
@@ -48,6 +51,13 @@ function ShowsPage() {
 
   return (
     <>
+      <Hero
+        link={`/shows/${feature.id}`}
+        title={feature.name}
+        overview={feature.overview}
+        rating={feature.vote_average}
+        backdropPath={feature.backdrop_path}
+      />
       {carousels.map((carousel) => (
         <Carousel
           key={carousel.title}

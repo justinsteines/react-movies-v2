@@ -9,6 +9,7 @@ import {
   moviesTopRatedQuery,
 } from '../utils/http'
 import Carousel from '../components/Carousel'
+import Hero from '../components/Hero'
 
 function MoviesPage() {
   const { data: resTrending } = useInfiniteQuery(moviesTrendingQuery())
@@ -22,6 +23,8 @@ function MoviesPage() {
   const upcoming = resUpcoming.pages.flatMap((p) => p.results)
   const popular = resPopular.pages.flatMap((p) => p.results)
   const topRated = resTopRated.pages.flatMap((p) => p.results)
+
+  let feature = trending[Math.floor(Math.random() * 10)]
 
   const carousels = [
     {
@@ -48,6 +51,13 @@ function MoviesPage() {
 
   return (
     <>
+      <Hero
+        link={`/movies/${feature.id}`}
+        title={feature.title}
+        overview={feature.overview}
+        rating={feature.vote_average}
+        backdropPath={feature.backdrop_path}
+      />
       {carousels.map((carousel) => (
         <Carousel
           key={carousel.title}

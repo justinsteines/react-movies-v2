@@ -61,11 +61,11 @@ function Carousel({ title, items }) {
             <Link
               to={item.link}
               key={item.id}
-              className="flex-none basis-[calc((100%-(2*0.5rem))/3)] snap-start scroll-ml-2 overflow-hidden md:basis-[calc((100%-(3*0.5rem))/4)] md:scroll-ml-12 lg:basis-[calc((100%-(4*0.5rem))/5)] xl:basis-[calc((100%-(5*0.5rem))/6)] 2xl:basis-[calc((100%-(6*0.5rem))/7)]"
+              className="flex-none basis-[calc((100%-(1*0.5rem))/2)] snap-start scroll-ml-2 overflow-hidden sm:basis-[calc((100%-(2*0.5rem))/3)] md:scroll-ml-12 lg:basis-[calc((100%-(3*0.5rem))/4)] xl:basis-[calc((100%-(4*0.5rem))/5)] 2xl:basis-[calc((100%-(5*0.5rem))/6)]"
             >
               <LazyImage
-                data-src={`https://image.tmdb.org/t/p/w185${item.posterPath}`}
-                data-srcset={`
+                dataSrc={`https://image.tmdb.org/t/p/w185${item.posterPath}`}
+                dataSrcSet={`
                   https://image.tmdb.org/t/p/w92${item.posterPath} 92w,
                   https://image.tmdb.org/t/p/w154${item.posterPath} 154w,
                   https://image.tmdb.org/t/p/w185${item.posterPath} 185w,
@@ -75,15 +75,16 @@ function Carousel({ title, items }) {
                   https://image.tmdb.org/t/p/original${item.posterPath} 980w,
                 `}
                 sizes={`
-                  (max-width: 639px) 203px,
+                  (max-width: 639px) 309px,
                   (max-width: 767px) 246px,
-                  (max-width: 1023px) 224px,
-                  (max-width: 1279px) 211px,
-                  (max-width: 1535px) 217px,
-                  185px
+                  (max-width: 1023px) 304px,
+                  (max-width: 1279px) 266px,
+                  (max-width: 1535px) 262px,
+                  217px
                 `}
                 alt={item.title}
-                className="aspect-[6/9] rounded-lg object-cover"
+                containerClassName="aspect-[6/9] rounded-lg"
+                className="w-full rounded-[inherit] object-cover"
               />
               <div className="hidden h-14 flex-col justify-around px-1 md:flex">
                 <p className="text-md mt-1 truncate">{item.title}</p>

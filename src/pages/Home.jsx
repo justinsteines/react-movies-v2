@@ -6,6 +6,7 @@ import {
   showsTrendingQuery,
 } from '../utils/http'
 import Carousel from '../components/Carousel'
+import Hero from '../components/Hero'
 
 function HomePage() {
   const { data: resMovies } = useInfiniteQuery(moviesTrendingQuery())
@@ -14,8 +15,39 @@ function HomePage() {
   const movies = resMovies.pages.flatMap((p) => p.results)
   const shows = resShows.pages.flatMap((p) => p.results)
 
+  const featureIndex = Math.floor(Math.random() * 10)
+
+  let feature
+
+  if (Math.floor(Math.random() * 2) === 0) {
+    const movie = movies[featureIndex]
+    feature = {
+      link: `/movies/${movie.id}`,
+      title: movie.title,
+      overview: movie.overview,
+      rating: movie.vote_average,
+      backdropPath: movie.backdrop_path,
+    }
+  } else {
+    const show = shows[featureIndex]
+    feature = {
+      link: `/shows/${show.id}`,
+      title: show.name,
+      overview: show.overview,
+      rating: show.vote_average,
+      backdropPath: show.backdrop_path,
+    }
+  }
+
   return (
     <>
+      <Hero
+        link={feature.link}
+        title={feature.title}
+        overview={feature.overview}
+        rating={feature.rating}
+        backdropPath={feature.backdropPath}
+      />
       <Carousel
         title="Trending Movies"
         items={movies.map((movie) => ({

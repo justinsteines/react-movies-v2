@@ -1,6 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 
-function LazyImage({ className, ...props }) {
+function LazyImage({
+  dataSrc,
+  dataSrcSet,
+  containerClassName,
+  className = '',
+  ...props
+}) {
   const imageRef = useRef(null)
   const [loaded, setLoaded] = useState(false)
 
@@ -10,8 +16,8 @@ function LazyImage({ className, ...props }) {
     const observer = new IntersectionObserver((entries) => {
       const [entry] = entries
       if (entry.isIntersecting) {
-        imageRefValue.src = imageRefValue.dataset.src
-        imageRefValue.srcset = imageRefValue.dataset.srcset
+        imageRefValue.src = dataSrc
+        imageRefValue.srcset = dataSrcSet
         observer.unobserve(imageRefValue)
       }
     })
@@ -26,10 +32,10 @@ function LazyImage({ className, ...props }) {
         observer.unobserve(imageRefValue)
       }
     }
-  }, [])
+  }, [dataSrc, dataSrcSet])
 
   return (
-    <div className={`${className} bg-slate-900`}>
+    <div className={`${containerClassName} bg-slate-900`}>
       <img
         ref={imageRef}
         className={`${className} ${

@@ -2,13 +2,21 @@ import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
 import { queryClient, showsDetailQuery } from '../utils/http'
+import Hero from '../components/Hero'
 
 function ShowsDetail() {
   const params = useParams()
 
   const { data: show } = useQuery(showsDetailQuery(params.id))
 
-  return <h1>{show.name}</h1>
+  return (
+    <Hero
+      title={show.name}
+      overview={show.overview}
+      rating={show.vote_average}
+      backdropPath={show.backdrop_path}
+    />
+  )
 }
 
 export default ShowsDetail
