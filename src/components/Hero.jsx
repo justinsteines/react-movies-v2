@@ -27,7 +27,7 @@ function Hero({ link, title, overview, rating, backdropPath }) {
           `}
           alt={title}
           sizes="(max-width: 1023px) 100vw, 66vw"
-          containerClassName="aspect-video bg-slate-950 after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0 after:z-10 after:bg-gradient-to-t after:from-slate-950 after:via-transparent after:via-15% lg:before:absolute lg:before:bottom-0 lg:before:left-0 lg:before:right-0 lg:before:top-0 lg:before:z-10 lg:before:bg-gradient-to-r lg:before:from-slate-950 lg:before:via-transparent lg:before:via-50%"
+          containerClassName="aspect-video w-full bg-slate-950 after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0 after:z-10 after:bg-gradient-to-t after:from-slate-950 after:via-transparent after:via-15% lg:before:absolute lg:before:bottom-0 lg:before:left-0 lg:before:right-0 lg:before:top-0 lg:before:z-10 lg:before:bg-gradient-to-r lg:before:from-slate-950 lg:before:via-transparent lg:before:via-50%"
           className="w-full object-cover"
         />
       </div>
