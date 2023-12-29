@@ -3,6 +3,7 @@ import { useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 import classes from './Carousel.module.css'
+import Container from './Container'
 import LazyImage from './LazyImage'
 import StarRating from './StarRating'
 
@@ -40,7 +41,9 @@ function Carousel({ title, items }) {
 
   return (
     <div className="my-14">
-      <h2 className="mb-4 px-2 text-2xl font-bold md:px-12">{title}</h2>
+      <Container>
+        <h2 className="mb-4 text-2xl font-bold">{title}</h2>
+      </Container>
       <div className="relative flex">
         <AnimatePresence>
           {showLeftButton && (
@@ -52,9 +55,9 @@ function Carousel({ title, items }) {
             </CarouselButton>
           )}
         </AnimatePresence>
-        <div
+        <Container
           ref={itemsRef}
-          className={`${classes.items} box-content flex snap-x gap-2 overflow-x-auto overscroll-x-none scroll-smooth px-2 md:px-12`}
+          className={`${classes.items} box-content flex snap-x gap-2 overflow-x-auto overscroll-x-none scroll-smooth`}
           onScroll={handleScroll}
         >
           {items.map((item) => (
@@ -92,7 +95,7 @@ function Carousel({ title, items }) {
               </div>
             </Link>
           ))}
-        </div>
+        </Container>
         <AnimatePresence>
           {showRightButton && (
             <CarouselButton

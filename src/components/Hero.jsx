@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 
+import Container from './Container'
 import LazyImage from './LazyImage'
 import StarRating from './StarRating'
 
@@ -31,13 +32,13 @@ function Hero({ link, title, overview, rating, backdropPath }) {
           className="w-full object-cover"
         />
       </div>
-      <div className="flex items-center px-2 md:px-12 lg:absolute lg:z-20 lg:h-full lg:w-1/2">
+      <Container className="flex items-center lg:absolute lg:z-20 lg:h-full lg:w-1/2">
         <div>
           {header}
           <StarRating rating={rating} className="my-4 lg:my-6" />
           <p className="line-clamp-3 text-slate-300">{overview}</p>
         </div>
-      </div>
+      </Container>
     </div>
   )
 }
