@@ -7,11 +7,17 @@ function ErrorPage() {
 
   return (
     <>
-      <MainNavigation />
-      <main>
-        <h1>{error?.status || 500}</h1>
-        <p>{error.data?.message || 'An error has occurred!'}</p>
-      </main>
+      <div className="grid grid-rows-[1fr_auto] h-screen-safe 2xl:container lg:grid-cols-[auto_1fr] lg:grid-rows-1 2xl:mx-auto">
+        <main className="flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-3xl font-bold">{error?.status || 500}</h1>
+            <p className="mt-4 text-xl">
+              {error.data?.message || 'An error has occurred!'}
+            </p>
+          </div>
+        </main>
+        <MainNavigation />
+      </div>
     </>
   )
 }
