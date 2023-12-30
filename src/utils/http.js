@@ -157,7 +157,10 @@ export function moviesDetailQuery(id) {
   return {
     queryKey: ['movies', id],
     queryFn: async ({ queryKey, signal }) => {
-      const res = await fetch(tmdbUrl(`movie/${queryKey[1]}`), { signal })
+      const res = await fetch(
+        tmdbUrl(`movie/${queryKey[1]}`, { append_to_response: 'credits' }),
+        { signal }
+      )
       if (!res.ok) {
         throw json(
           { message: 'Could not fetch movie details.' },
@@ -168,6 +171,30 @@ export function moviesDetailQuery(id) {
     },
     staleTime: HOURS_24,
     gcTime: HOURS_24,
+  }
+}
+
+export function moviesRecommendationsQuery(id) {
+  return {
+    queryKey: ['movies', id, 'recommendations'],
+    queryFn: async ({ queryKey, signal }) => {
+      const res = await fetch(tmdbUrl(`movie/${queryKey[1]}/recommendations`), {
+        signal,
+      })
+      if (!res.ok) {
+        throw json(
+          { message: 'Could not fetch movie recommendations.' },
+          { status: res.status }
+        )
+      }
+      return res.json()
+    },
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => {
+      return lastPage.page + 1 <= lastPage.total_pages
+        ? lastPage.page + 1
+        : undefined
+    },
   }
 }
 
@@ -296,7 +323,10 @@ export function showsDetailQuery(id) {
   return {
     queryKey: ['shows', id],
     queryFn: async ({ queryKey, signal }) => {
-      const res = await fetch(tmdbUrl(`tv/${queryKey[1]}`), { signal })
+      const res = await fetch(
+        tmdbUrl(`tv/${queryKey[1]}`, { append_to_response: 'credits' }),
+        { signal }
+      )
       if (!res.ok) {
         throw json(
           { message: 'Could not fetch show details.' },
@@ -307,5 +337,29 @@ export function showsDetailQuery(id) {
     },
     staleTime: HOURS_24,
     gcTime: HOURS_24,
+  }
+}
+
+export function showsRecommendationsQuery(id) {
+  return {
+    queryKey: ['shows', id, 'recommendations'],
+    queryFn: async ({ queryKey, signal }) => {
+      const res = await fetch(tmdbUrl(`tv/${queryKey[1]}/recommendations`), {
+        signal,
+      })
+      if (!res.ok) {
+        throw json(
+          { message: 'Could not fetch show recommendations.' },
+          { status: res.status }
+        )
+      }
+      return res.json()
+    },
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => {
+      return lastPage.page + 1 <= lastPage.total_pages
+        ? lastPage.page + 1
+        : undefined
+    },
   }
 }

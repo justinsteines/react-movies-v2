@@ -14,6 +14,7 @@ import ShowsDetailPage, {
 } from './pages/ShowsDetail'
 import ShowsPage, { loader as showsLoader } from './pages/Shows'
 import { queryClient } from './utils/http'
+import PeopleDetailPage from './pages/PeopleDetail'
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
         path: 'shows/:id',
         element: <ShowsDetailPage />,
         loader: showsDetailLoader,
+      },
+      {
+        path: 'people/:id',
+        element: <PeopleDetailPage />,
       },
     ],
   },

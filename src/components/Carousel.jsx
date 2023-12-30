@@ -39,7 +39,7 @@ function Carousel({
       setShowRightButton(true)
     } else if (
       evt.target.scrollLeft + evt.target.clientWidth >=
-      evt.target.scrollWidth
+      evt.target.scrollWidth - 1
     ) {
       setShowLeftButton(true)
       setShowRightButton(false)
