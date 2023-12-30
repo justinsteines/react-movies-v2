@@ -7,6 +7,7 @@ import {
 } from '../utils/http'
 import Carousel from '../components/Carousel'
 import Hero from '../components/Hero'
+import StarRating from '../components/StarRating'
 
 function HomePage() {
   const { data: resMovies } = useInfiniteQuery(moviesTrendingQuery())
@@ -53,20 +54,22 @@ function HomePage() {
         items={movies.map((movie) => ({
           id: movie.id,
           link: `/movies/${movie.id}`,
+          imagePath: movie.poster_path,
           title: movie.title,
-          posterPath: movie.poster_path,
-          rating: movie.vote_average,
+          subtitle: <StarRating rating={movie.vote_average} />,
         }))}
+        itemsPerPage={{ mobile: 2, sm: 3, md: 3, lg: 4, xl: 5, '2xl': 6 }}
       />
       <Carousel
         title="Trending Shows"
         items={shows.map((show) => ({
           id: show.id,
           link: `/shows/${show.id}`,
+          imagePath: show.poster_path,
           title: show.name,
-          posterPath: show.poster_path,
-          rating: show.vote_average,
+          subtitle: <StarRating rating={show.vote_average} />,
         }))}
+        itemsPerPage={{ mobile: 2, sm: 3, md: 3, lg: 4, xl: 5, '2xl': 6 }}
       />
     </>
   )
