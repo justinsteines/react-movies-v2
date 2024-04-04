@@ -7,6 +7,7 @@ import {
   moviesRecommendationsQuery,
 } from '../utils/http'
 import Carousel from '../components/Carousel'
+import ComingSoon from '../components/ComingSoon'
 import Container from '../components/Container'
 import Hero from '../components/Hero'
 import StarRating from '../components/StarRating'
@@ -91,10 +92,14 @@ function MoviesDetail() {
           )}
         </Tabs.Content>
         <Tabs.Content value={TABS[1]}>
-          <Container>Videos Content</Container>
+          <Container>
+            <ComingSoon />
+          </Container>
         </Tabs.Content>
         <Tabs.Content value={TABS[2]}>
-          <Container>Photos Content</Container>
+          <Container>
+            <ComingSoon />
+          </Container>
         </Tabs.Content>
       </Tabs.Root>
     </>

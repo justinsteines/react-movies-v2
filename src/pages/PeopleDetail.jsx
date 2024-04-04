@@ -1,5 +1,7 @@
+import ComingSoon from '../components/ComingSoon'
+
 function PeopleDetail() {
-  return <p>People Detail Page</p>
+  return <ComingSoon />
 }
 
 export default PeopleDetail
