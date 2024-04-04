@@ -3,9 +3,9 @@ import { Icon } from '@iconify/react'
 
 function MainNavigation() {
   const links = [
-    { path: '/', iconName: 'bx:home-alt-2' },
-    { path: '/movies', iconName: 'mdi:movie-open-outline' },
-    { path: '/shows', iconName: 'bx:tv' },
+    { path: '/', iconName: 'bx:home-alt-2', label: 'Home' },
+    { path: '/movies', iconName: 'mdi:movie-open-outline', label: 'Movies' },
+    { path: '/shows', iconName: 'bx:tv', label: 'Shows' },
   ]
 
   return (
@@ -20,6 +20,7 @@ function MainNavigation() {
                   isActive ? 'text-sky-400' : 'text-slate-100'
                 } inline-block p-4 text-4xl`
               }
+              aria-label={link.label}
             >
               <Icon icon={link.iconName} />
             </NavLink>
