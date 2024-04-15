@@ -27,6 +27,7 @@ function HomePage() {
       title: movie.title,
       overview: movie.overview,
       rating: movie.vote_average,
+      ratingCount: movie.vote_count,
       backdropPath: movie.backdrop_path,
     }
   } else {
@@ -36,6 +37,7 @@ function HomePage() {
       title: show.name,
       overview: show.overview,
       rating: show.vote_average,
+      ratingCount: show.vote_count,
       backdropPath: show.backdrop_path,
     }
   }
@@ -47,6 +49,7 @@ function HomePage() {
         title={feature.title}
         overview={feature.overview}
         rating={feature.rating}
+        ratingCount={feature.ratingCount}
         backdropPath={feature.backdropPath}
       />
       <Carousel
@@ -56,7 +59,12 @@ function HomePage() {
           link: `/movies/${movie.id}`,
           imagePath: movie.poster_path,
           title: movie.title,
-          subtitle: <StarRating rating={movie.vote_average} />,
+          subtitle: (
+            <StarRating
+              rating={movie.vote_average}
+              ratingCount={movie.vote_count}
+            />
+          ),
         }))}
         itemsPerPage={{ mobile: 2, sm: 3, md: 3, lg: 4, xl: 5, '2xl': 6 }}
       />
@@ -67,7 +75,12 @@ function HomePage() {
           link: `/shows/${show.id}`,
           imagePath: show.poster_path,
           title: show.name,
-          subtitle: <StarRating rating={show.vote_average} />,
+          subtitle: (
+            <StarRating
+              rating={show.vote_average}
+              ratingCount={show.vote_count}
+            />
+          ),
         }))}
         itemsPerPage={{ mobile: 2, sm: 3, md: 3, lg: 4, xl: 5, '2xl': 6 }}
       />

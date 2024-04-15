@@ -40,6 +40,7 @@ function ShowsDetail() {
         title={show.name}
         overview={show.overview}
         rating={show.vote_average}
+        ratingCount={show.vote_count}
         backdropPath={show.backdrop_path}
       />
       <Tabs.Root
@@ -85,7 +86,12 @@ function ShowsDetail() {
                 link: `/shows/${show.id}`,
                 imagePath: show.poster_path,
                 title: show.name,
-                subtitle: <StarRating rating={show.vote_average} />,
+                subtitle: (
+                  <StarRating
+                    rating={show.vote_average}
+                    ratingCount={show.vote_count}
+                  />
+                ),
               }))}
               itemsPerPage={{ mobile: 3, sm: 4, md: 4, lg: 5, xl: 6, '2xl': 7 }}
             />

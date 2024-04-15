@@ -40,6 +40,7 @@ function MoviesDetail() {
         title={movie.title}
         overview={movie.overview}
         rating={movie.vote_average}
+        ratingCount={movie.vote_count}
         backdropPath={movie.backdrop_path}
       />
       <Tabs.Root
@@ -85,7 +86,12 @@ function MoviesDetail() {
                 link: `/movies/${movie.id}`,
                 imagePath: movie.poster_path,
                 title: movie.title,
-                subtitle: <StarRating rating={movie.vote_average} />,
+                subtitle: (
+                  <StarRating
+                    rating={movie.vote_average}
+                    ratingCount={movie.vote_count}
+                  />
+                ),
               }))}
               itemsPerPage={{ mobile: 3, sm: 4, md: 4, lg: 5, xl: 6, '2xl': 7 }}
             />

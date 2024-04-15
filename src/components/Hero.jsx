@@ -4,7 +4,7 @@ import Container from './Container'
 import LazyImage from './LazyImage'
 import StarRating from './StarRating'
 
-function Hero({ link, title, overview, rating, backdropPath }) {
+function Hero({ link, title, overview, rating, ratingCount, backdropPath }) {
   let header = (
     <h1 className="my-5 text-3xl font-bold text-slate-100 lg:text-4xl">
       {title}
@@ -35,7 +35,11 @@ function Hero({ link, title, overview, rating, backdropPath }) {
       <Container className="flex items-center lg:absolute lg:z-20 lg:h-full lg:w-1/2">
         <div>
           {header}
-          <StarRating rating={rating} className="my-4 lg:my-6" />
+          <StarRating
+            rating={rating}
+            ratingCount={ratingCount}
+            className="my-4 lg:my-6"
+          />
           <p className="line-clamp-3 text-slate-300">{overview}</p>
         </div>
       </Container>

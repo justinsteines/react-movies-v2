@@ -57,6 +57,7 @@ function MoviesPage() {
         title={feature.title}
         overview={feature.overview}
         rating={feature.vote_average}
+        ratingCount={feature.vote_count}
         backdropPath={feature.backdrop_path}
       />
       {carousels.map((carousel) => (
@@ -68,7 +69,12 @@ function MoviesPage() {
             link: `/movies/${movie.id}`,
             imagePath: movie.poster_path,
             title: movie.title,
-            subtitle: <StarRating rating={movie.vote_average} />,
+            subtitle: (
+              <StarRating
+                rating={movie.vote_average}
+                ratingCount={movie.vote_count}
+              />
+            ),
           }))}
           itemsPerPage={{ mobile: 2, sm: 3, md: 3, lg: 4, xl: 5, '2xl': 6 }}
         />

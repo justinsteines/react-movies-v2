@@ -57,6 +57,7 @@ function ShowsPage() {
         title={feature.name}
         overview={feature.overview}
         rating={feature.vote_average}
+        ratingCount={feature.vote_count}
         backdropPath={feature.backdrop_path}
       />
       {carousels.map((carousel) => (
@@ -68,7 +69,12 @@ function ShowsPage() {
             link: `/shows/${show.id}`,
             imagePath: show.poster_path,
             title: show.name,
-            subtitle: <StarRating rating={show.vote_average} />,
+            subtitle: (
+              <StarRating
+                rating={show.vote_average}
+                ratingCount={show.vote_count}
+              />
+            ),
           }))}
           itemsPerPage={{ mobile: 2, sm: 3, md: 3, lg: 4, xl: 5, '2xl': 6 }}
         />
