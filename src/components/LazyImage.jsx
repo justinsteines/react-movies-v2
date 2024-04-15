@@ -40,7 +40,7 @@ function LazyImage({
         ref={imageRef}
         className={`${className} ${
           loaded ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
-        } transition-all duration-1000`}
+        } h-full transition-all duration-1000`}
         onLoad={() => {
           setLoaded(true)
         }}

@@ -20,12 +20,12 @@ function Hero({ link, title, overview, rating, ratingCount, backdropPath }) {
       <div className="relative flex max-h-[30rem] items-center overflow-hidden lg:ml-auto lg:w-2/3">
         <LazyImage
           dataSrc={`https://image.tmdb.org/t/p/w780${backdropPath}`}
-          dataSrcSet={`
-            https://image.tmdb.org/t/p/w300${backdropPath} 300w,
-            https://image.tmdb.org/t/p/w780${backdropPath} 780w,
-            https://image.tmdb.org/t/p/w1280${backdropPath} 1280w,
-            https://image.tmdb.org/t/p/original${backdropPath} 1650w,
-          `}
+          dataSrcSet={[
+            `https://image.tmdb.org/t/p/w300${backdropPath} 300w`,
+            `https://image.tmdb.org/t/p/w780${backdropPath} 780w`,
+            `https://image.tmdb.org/t/p/w1280${backdropPath} 1280w`,
+            `https://image.tmdb.org/t/p/original${backdropPath} 1650w`,
+          ].join(', ')}
           alt={title}
           sizes="(max-width: 1023px) 100vw, 66vw"
           containerClassName="aspect-video w-full bg-slate-950 after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0 after:z-10 after:bg-gradient-to-t after:from-slate-950 after:via-transparent after:via-15% lg:before:absolute lg:before:bottom-0 lg:before:left-0 lg:before:right-0 lg:before:top-0 lg:before:z-10 lg:before:bg-gradient-to-r lg:before:from-slate-950 lg:before:via-transparent lg:before:via-50%"
