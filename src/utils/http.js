@@ -15,12 +15,10 @@ export const queryClient = new QueryClient({
 })
 
 function tmdbUrl(path, params = {}) {
-  const tmdbUrl = new URL(`3/${path}`, 'https://api.themoviedb.org/')
-
-  // TODO: Proxy request to TMDB through custom backend to hide API key.
-  tmdbUrl.searchParams.set('api_key', import.meta.env.VITE_TMDB_API_KEY)
-  tmdbUrl.searchParams.set('language', 'en-US')
-  tmdbUrl.searchParams.set('include_adult', 'false')
+  const tmdbUrl = new URL(
+    `tmdb/${path}`,
+    import.meta.env.VITE_TMDB_PROXY_BASE_URL
+  )
 
   for (const [key, value] of Object.entries(params)) {
     tmdbUrl.searchParams.set(key, value)
