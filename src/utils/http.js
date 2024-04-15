@@ -175,10 +175,13 @@ export function moviesDetailQuery(id) {
 export function moviesRecommendationsQuery(id) {
   return {
     queryKey: ['movies', id, 'recommendations'],
-    queryFn: async ({ queryKey, signal }) => {
-      const res = await fetch(tmdbUrl(`movie/${queryKey[1]}/recommendations`), {
-        signal,
-      })
+    queryFn: async ({ queryKey, pageParam, signal }) => {
+      const res = await fetch(
+        tmdbUrl(`movie/${queryKey[1]}/recommendations`, { page: pageParam }),
+        {
+          signal,
+        }
+      )
       if (!res.ok) {
         throw json(
           { message: 'Could not fetch movie recommendations.' },
@@ -341,10 +344,13 @@ export function showsDetailQuery(id) {
 export function showsRecommendationsQuery(id) {
   return {
     queryKey: ['shows', id, 'recommendations'],
-    queryFn: async ({ queryKey, signal }) => {
-      const res = await fetch(tmdbUrl(`tv/${queryKey[1]}/recommendations`), {
-        signal,
-      })
+    queryFn: async ({ queryKey, pageParam, signal }) => {
+      const res = await fetch(
+        tmdbUrl(`tv/${queryKey[1]}/recommendations`, { page: pageParam }),
+        {
+          signal,
+        }
+      )
       if (!res.ok) {
         throw json(
           { message: 'Could not fetch show recommendations.' },
